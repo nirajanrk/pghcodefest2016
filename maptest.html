@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Waypoints in directions</title>
+    <style>
+      #right-panel {
+        font-family: 'Roboto','sans-serif';
+        line-height: 30px;
+        padding-left: 10px;
+      }
+
+      #right-panel select, #right-panel input {
+        font-size: 15px;
+      }
+
+      #right-panel select {
+        width: 100%;
+      }
+
+      #right-panel i {
+        font-size: 12px;
+      }
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        height: 100%;
+        float: left;
+        width: 70%;
+        height: 100%;
+      }
+      #right-panel {
+        margin: 20px;
+        border-width: 2px;
+        width: 20%;
+        float: left;
+        text-align: left;
+        padding-top: 20px;
+      }
+      #directions-panel {
+        margin-top: 20px;
+        background-color: #FFEE77;
+        padding: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <div id="right-panel">
+    <div>
+    <b>Start:</b>
+    <select id="start">
+      <option value="40.4380555,-79.9988901">Pittsburgh Public Works Department</option>
+      <option value="40.4348462,-79.9966156">First Avenue Station</option>
+      <option value="40.446517,-80.0061781">PNC Park</option>
+    </select>
+    <br>
+    <b>Waypoints:</b> <br>
+    <i>(Ctrl-Click for multiple selection)</i> <br>
+    <select multiple id="waypoints">
+      <option value="40.44316283,-79.99684298">1-Grey:40.44316283,-79.99684298</option>
+<option value="40.44293823,-79.99765298">2-Black:40.44293823,-79.99765298</option>
+<option value="40.44270963,-79.99838258">3-Black:40.44270963,-79.99838258</option>
+<option value="40.44204413,-79.99911208">4-Black:40.44204413,-79.99911208</option>
+<option value="40.44159913,-79.99780318">5-Black:40.44159913,-79.99780318</option>
+<option value="40.44130523,-79.99793198">6-Grey:40.44130523,-79.99793198</option>
+<option value="40.44096223,-79.99814658">7-Black:40.44096223,-79.99814658</option>
+<option value="40.44164813,-79.99851138">8-Black:40.44164813,-79.99851138</option>
+<option value="40.44175423,-79.99880108">9-Black:40.44175423,-79.99880108</option>
+<option value="40.44148893,-79.99973978">10-Black:40.44148893,-79.99973978</option>
+<option value="40.44107653,-80.00003478">11-Black:40.44107653,-80.00003478</option>
+<option value="40.44082343,-80.00018508">12-Grey:40.44082343,-80.00018508</option>
+<option value="40.44028863,-79.99898878">13-Black:40.44028863,-79.99898878</option>
+<option value="40.44082343,-80.00079658">14-Black:40.44082343,-80.00079658</option>
+<option value="40.44011713,-80.00068388">15-Grey:40.44011713,-80.00068388</option>
+<option value="40.43910463,-80.00139738">16-Black:40.43910463,-80.00139738</option>
+<option value="40.43740613,-80.00092528">17-Black:40.43740613,-80.00092528</option>
+<option value="40.43777353,-80.00185868">18-Black:40.43777353,-80.00185868</option>
+<option value="40.43751633,-80.00148318">19-Black:40.43751633,-80.00148318</option>
+<option value="40.43710393,-80.00175148">20-Black:40.43710393,-80.00175148</option>
+<option value="40.43741833,-80.00252388">21-Grey:40.43741833,-80.00252388</option>
+<option value="40.43890043,-80.00337148">22-Black:40.43890043,-80.00337148</option>
+<option value="40.44011303,-80.00672958">23-Black:40.44011303,-80.00672958</option>
+<option value="40.43985993,-80.00550658">24-Black:40.43985993,-80.00550658</option>
+<option value="40.43970473,-80.00483058">25-Black:40.43970473,-80.00483058</option>
+<option value="40.43902703,-80.00321058">26-Black:40.43902703,-80.00321058</option>
+<option value="40.43866773,-80.00234148">27-Black:40.43866773,-80.00234148</option>
+<option value="40.43985173,-80.00242738">28-Black:40.43985173,-80.00242738</option>
+<option value="40.44115413,-80.00384358">29-Black:40.44115413,-80.00384358</option>
+<option value="40.44083973,-80.00295848">30-Black:40.44083973,-80.00295848</option>
+<option value="40.44073773,-80.00301208">31-Black:40.44073773,-80.00301208</option>
+<option value="40.44059073,-80.00308718">32-Black:40.44059073,-80.00308718</option>
+<option value="40.44046413,-80.00290478">33-Black:40.44046413,-80.00290478</option>
+<option value="40.44034983,-80.00256688">34-Black:40.44034983,-80.00256688</option>
+<option value="40.44047233,-80.00221278">35-Black:40.44047233,-80.00221278</option>
+<option value="40.44018653,-80.00123108">36-Black:40.44018653,-80.00123108</option>
+<option value="40.44062743,-80.00210008">37-Black:40.44062743,-80.00210008</option>
+<option value="40.44048863,-80.00178358">38-Black:40.44048863,-80.00178358</option>
+<option value="40.44074793,-80.00044788">39-Black:40.44074793,-80.00044788</option>
+<option value="40.44105613,-80.00138128">40-Black:40.44105613,-80.00138128</option>
+<option value="40.44087243,-80.00217518">41-Black:40.44087243,-80.00217518</option>
+<option value="40.44103983,-80.00255078">42-Black:40.44103983,-80.00255078</option>
+<option value="40.44165223,-80.00256688">43-Black:40.44165223,-80.00256688</option>
+<option value="40.44206453,-80.00094678">44-Black:40.44206453,-80.00094678</option>
+<option value="40.44446513,-79.99580768">45-Black:40.44446513,-79.99580768</option>
+<option value="40.44322403,-79.99718098">46-Black:40.44322403,-79.99718098</option>
+<option value="40.44397523,-79.99840408">47-Black:40.44397523,-79.99840408</option>
+<option value="40.44436713,-79.99858648">48-Black:40.44436713,-79.99858648</option>
+<option value="40.44507753,-79.99888688">49-Black:40.44507753,-79.99888688</option>
+<option value="40.44438353,-79.99876878">50-Black:40.44438353,-79.99876878</option>
+<option value="40.44328123,-79.99823238">51-Black:40.44328123,-79.99823238</option>
+<option value="40.44262793,-79.99944478">52-Black:40.44262793,-79.99944478</option>
+<option value="40.44277493,-80.00018508">53-Black:40.44277493,-80.00018508</option>
+<option value="40.44362413,-80.00051758">54-Black:40.44362413,-80.00051758</option>
+<option value="40.44435903,-80.00066778">55-Black:40.44435903,-80.00066778</option>
+<option value="40.44426103,-80.00154758">56-Black:40.44426103,-80.00154758</option>
+<option value="40.44336283,-80.00236298">57-Black:40.44336283,-80.00236298</option>
+<option value="40.44310973,-80.00224498">58-Black:40.44310973,-80.00224498</option>
+<option value="40.44335473,-80.00253468">59-Black:40.44335473,-80.00253468</option>
+<option value="40.44239933,-80.00411178">60-Black:40.44239933,-80.00411178</option>
+<option value="40.44156653,-80.00369338">61-Black:40.44156653,-80.00369338</option>
+<option value="40.44160733,-80.00476628">62-Black:40.44160733,-80.00476628</option>
+<option value="40.44136233,-80.00606448">63-Black:40.44136233,-80.00606448</option>
+<option value="40.43983543,-79.99770668">64-Black:40.43983543,-79.99770668</option>
+<option value="40.43974563,-79.99640848">65-Black:40.43974563,-79.99640848</option>
+<option value="40.44026823,-79.99346878">66-Black:40.44026823,-79.99346878</option>
+<option value="40.43900663,-79.99547238">67-Black:40.43900663,-79.99547238</option>
+<option value="40.44297913,-79.99551798">68-Black:40.44297913,-79.99551798</option>
+<option value="40.44288523,-79.99683228">69-Black:40.44288523,-79.99683228</option>
+<option value="40.44214213,-79.99720778">70-Grey:40.44214213,-79.99720778</option>
+<option value="40.44200743,-79.99730168">71-Grey:40.44200743,-79.99730168</option>
+<option value="40.44185843,-79.99675448">72-Grey:40.44185843,-79.99675448</option>
+<option value="40.44176653,-79.99643258">73-Grey:40.44176653,-79.99643258</option>
+<option value="40.44081123,-79.99809018">74-Grey:40.44081123,-79.99809018</option>
+<option value="40.44099283,-79.99798028">75-Grey:40.44099283,-79.99798028</option>
+<option value="40.43713253,-79.99814928">76-Black:40.43713253,-79.99814928</option>
+<option value="40.43720813,-79.99839868">77-Black:40.43720813,-79.99839868</option>
+<option value="40.43904743,-79.99810098">78-Black:40.43904743,-79.99810098</option>
+<option value="40.43926583,-79.99866418">79-Black:40.43926583,-79.99866418</option>
+<option value="40.44237483,-80.00035668">80-with Urn:40.44237483,-80.00035668</option>
+<option value="40.44337103,-80.00480918">81-with Urn:40.44337103,-80.00480918</option>
+<option value="40.44120723,-80.00672958">82-with Urn:40.44120723,-80.00672958</option>
+<option value="40.44178283,-80.00476628">83-with Urn:40.44178283,-80.00476628</option>
+<option value="40.44217893,-80.00286728">84-with Urn:40.44217893,-80.00286728</option>
+<option value="40.44199113,-80.00194458">85-with Urn:40.44199113,-80.00194458</option>
+<option value="40.44204823,-80.00171928">86-with Urn:40.44204823,-80.00171928</option>
+<option value="40.44215443,-80.00129008">87-with Urn:40.44215443,-80.00129008</option>
+<option value="40.44226873,-80.00079658">88-with Urn:40.44226873,-80.00079658</option>
+<option value="40.44312603,-80.00030308">89-with Urn:40.44312603,-80.00030308</option>
+<option value="40.44152563,-80.00403668">90-with Urn:40.44152563,-80.00403668</option>
+<option value="40.44159503,-80.00274388">91-with Urn:40.44159503,-80.00274388</option>
+<option value="40.44254633,-79.99904778">92-with Urn:40.44254633,-79.99904778</option>
+<option value="40.44243203,-79.99829668">93-with Urn:40.44243203,-79.99829668</option>
+<option value="40.44225233,-79.99786758">94-with Urn:40.44225233,-79.99786758</option>
+<option value="40.44210543,-79.99743848">95-with Urn:40.44210543,-79.99743848</option>
+<option value="40.44177883,-79.99831818">96-with Urn:40.44177883,-79.99831818</option>
+<option value="40.44069273,-80.00008318">97-with Urn:40.44069273,-80.00008318</option>
+<option value="40.44030493,-79.99943398">98-with Urn:40.44030493,-79.99943398</option>
+<option value="40.44007633,-79.99880108">99-with Urn:40.44007633,-79.99880108</option>
+<option value="40.44282393,-80.00228788">100-with Urn:40.44282393,-80.00228788</option>
+<option value="40.43953862,-79.99908749">101-with Urn:40.43953862,-79.99908749</option>
+<option value="40.43937403,-80.00118278">102-with Urn:40.43937403,-80.00118278</option>
+<option value="40.43978643,-80.00091458">103-with Urn:40.43978643,-80.00091458</option>
+<option value="40.43889233,-79.99984168">104-with Urn:40.43889233,-79.99984168</option>
+<option value="40.43863093,-79.99965398">105-with Urn:40.43863093,-79.99965398</option>
+<option value="40.43830433,-79.99987928">106-with Urn:40.43830433,-79.99987928</option>
+<option value="40.43862283,-80.00085558">107-with Urn:40.43862283,-80.00085558</option>
+<option value="40.43815323,-79.99997048">108-with Urn:40.43815323,-79.99997048</option>
+<option value="40.43848803,-80.00177828">109-with Urn:40.43848803,-80.00177828</option>
+<option value="40.43783483,-80.00237368">110-with Urn:40.43783483,-80.00237368</option>
+<option value="40.43841053,-80.00207868">111-with Urn:40.43841053,-80.00207868</option>
+<option value="40.43860243,-80.00256148">112-with Urn:40.43860243,-80.00256148</option>
+<option value="40.43916993,-80.00151008">113-with Urn:40.43916993,-80.00151008</option>
+<option value="40.44077443,-80.00647208">114-with Urn:40.44077443,-80.00647208</option>
+<option value="40.44118273,-80.00418688">115-with Urn:40.44118273,-80.00418688</option>
+<option value="40.43913313,-80.00219128">116-with Urn:40.43913313,-80.00219128</option>
+<option value="40.43973743,-80.00207328">117-with Urn:40.43973743,-80.00207328</option>
+<option value="40.44128883,-80.00377388">118-with Urn:40.44128883,-80.00377388</option>
+<option value="40.44147663,-80.00320518">119-with Urn:40.44147663,-80.00320518</option>
+<option value="40.44147263,-80.00213228">120-with Urn:40.44147263,-80.00213228</option>
+<option value="40.43991703,-80.00098428">121-with Urn:40.43991703,-80.00098428</option>
+<option value="40.44020283,-80.00080728">122-with Urn:40.44020283,-80.00080728</option>
+<option value="40.44062343,-80.00050158">123-with Urn:40.44062343,-80.00050158</option>
+<option value="40.44114593,-80.00126328">124-with Urn:40.44114593,-80.00126328</option>
+<option value="40.44139503,-80.00232008">125-with Urn:40.44139503,-80.00232008</option>
+<option value="40.44187673,-80.00167638">126-with Urn:40.44187673,-80.00167638</option>
+<option value="40.44230543,-80.00008848">127-with Urn:40.44230543,-80.00008848</option>
+<option value="40.44174203,-79.99979878">128-with Urn:40.44174203,-79.99979878</option>
+<option value="40.44222383,-79.99946088">129-with Urn:40.44222383,-79.99946088</option>
+<option value="40.44434263,-79.99565748">130-with Urn:40.44434263,-79.99565748</option>
+<option value="40.44395893,-79.99548578">131-with Urn:40.44395893,-79.99548578</option>
+<option value="40.44365683,-79.99558238">132-with Urn:40.44365683,-79.99558238</option>
+<option value="40.44422833,-79.99610808">133-with Urn:40.44422833,-79.99610808</option>
+<option value="40.44340363,-79.99639778">134-with Urn:40.44340363,-79.99639778</option>
+<option value="40.44402423,-79.99695568">135-with Urn:40.44402423,-79.99695568</option>
+<option value="40.44389363,-79.99743848">136-with Urn:40.44389363,-79.99743848</option>
+<option value="40.44430183,-79.99652648">137-with Urn:40.44430183,-79.99652648</option>
+<option value="40.44373023,-79.99806068">138-with Urn:40.44373023,-79.99806068</option>
+<option value="40.44318323,-79.99802858">139-with Urn:40.44318323,-79.99802858</option>
+<option value="40.44304443,-79.99777098">140-with Urn:40.44304443,-79.99777098</option>
+<option value="40.44296273,-79.99811438">141-with Urn:40.44296273,-79.99811438</option>
+<option value="40.44357513,-79.99858648">142-with Urn:40.44357513,-79.99858648</option>
+<option value="40.44279133,-79.99884388">143-with Urn:40.44279133,-79.99884388</option>
+<option value="40.44272593,-79.99909068">144-with Urn:40.44272593,-79.99909068</option>
+<option value="40.44253813,-79.99980948">145-with Urn:40.44253813,-79.99980948</option>
+<option value="40.44291373,-80.00003478">146-with Urn:40.44291373,-80.00003478</option>
+<option value="40.44319953,-80.00002408">147-with Urn:40.44319953,-80.00002408</option>
+<option value="40.44333023,-79.99959498">148-with Urn:40.44333023,-79.99959498</option>
+<option value="40.44333223,-79.99994898">149-with Urn:40.44333223,-79.99994898</option>
+<option value="40.44348733,-80.00031918">150-with Urn:40.44348733,-80.00031918</option>
+<option value="40.44414673,-80.00059808">151-with Urn:40.44414673,-80.00059808</option>
+<option value="40.44308933,-80.00098428">152-with Urn:40.44308933,-80.00098428</option>
+<option value="40.44292603,-80.00157978">153-with Urn:40.44292603,-80.00157978</option>
+<option value="40.44280353,-80.00206258">154-with Urn:40.44280353,-80.00206258</option>
+<option value="40.44389763,-80.00277608">155-with Urn:40.44389763,-80.00277608</option>
+<option value="40.44290563,-80.00233078">156-with Urn:40.44290563,-80.00233078</option>
+<option value="40.44256673,-80.00302818">157-with Urn:40.44256673,-80.00302818</option>
+<option value="40.43782663,-80.00032448">158-Urn (on pole):40.43782663,-80.00032448</option>
+<option value="40.44165833,-79.99836378">159-Urn (on pole):40.44165833,-79.99836378</option>
+<option value="40.44073563,-80.00421368">160-Urn (on pole):40.44073563,-80.00421368</option>
+<option value="40.44077853,-80.00057128">161-Urn (on pole):40.44077853,-80.00057128</option>
+<option value="40.44335873,-80.00035668">162-Urn (on pole):40.44335873,-80.00035668</option>
+<option value="40.44353023,-80.00243278">163-Urn (on pole):40.44353023,-80.00243278</option>
+<option value="40.44415283,-79.99680278">164-Urn (on pole):40.44415283,-79.99680278</option>
+<option value="40.44350163,-79.99572188">165-Urn (on pole):40.44350163,-79.99572188</option>
+<option value="40.44182783,-80.00275188">166-Urn (on pole):40.44182783,-80.00275188</option>
+<option value="40.44241973,-80.00002678">167-Urn (on pole):40.44241973,-80.00002678</option>
+<option value="40.44278313,-79.99869368">168-Urn (on pole):40.44278313,-79.99869368</option>
+<option value="40.44356903,-80.00260168">169-Urn (on pole):40.44356903,-80.00260168</option>
+<option value="40.44284333,-79.99673168">170-Urn (on pole):40.44284333,-79.99673168</option>
+<option value="40.43885813,-80.00163208">171-Urn (on pole):40.43885813,-80.00163208</option>
+<option value="40.44053363,-79.99744248">172-Urn (on pole):40.44053363,-79.99744248</option>
+<option value="40.43899433,-79.99692618">173-with Urn:40.43899433,-79.99692618</option>
+<option value="40.43879833,-79.99732048">174-with Urn:40.43879833,-79.99732048</option>
+<option value="40.43936183,-79.99694758">175-with Urn:40.43936183,-79.99694758</option>
+<option value="40.43864123,-79.99742238">176-with Urn:40.43864123,-79.99742238</option>
+<option value="40.43916993,-79.99866958">177-with Urn:40.43916993,-79.99866958</option>
+<option value="40.43915363,-79.99913898">178-with Urn:40.43915363,-79.99913898</option>
+<option value="40.43939507,-79.99921968">179-with Urn:40.43939507,-79.99921968</option>
+<option value="40.43885553,-79.99932668">180-with Urn:40.43885553,-79.99932668</option>
+<option value="40.43872083,-79.99943398">181-with Urn:40.43872083,-79.99943398</option>
+<option value="40.43860243,-79.99951988">182-with Urn:40.43860243,-79.99951988</option>
+<option value="40.43821863,-79.99977198">183-with Urn:40.43821863,-79.99977198</option>
+<option value="40.43780213,-80.00005628">184-with Urn:40.43780213,-80.00005628</option>
+<option value="40.43744283,-79.99945008">185-with Urn:40.43744283,-79.99945008</option>
+<option value="40.43760613,-79.99813048">186-with Urn:40.43760613,-79.99813048</option>
+<option value="40.43805933,-79.99751358">187-with Urn:40.43805933,-79.99751358</option>
+<option value="40.43773273,-79.99705218">188-with Urn:40.43773273,-79.99705218</option>
+<option value="40.43790833,-79.99629578">189-with Urn:40.43790833,-79.99629578</option>
+<option value="40.43963533,-79.99725608">190-with Urn:40.43963533,-79.99725608</option>
+<option value="40.43966393,-79.99765298">191-with Urn:40.43966393,-79.99765298</option>
+<option value="40.43978233,-79.99757788">192-with Urn:40.43978233,-79.99757788</option>
+<option value="40.43998233,-79.99823778">193-with Urn:40.43998233,-79.99823778</option>
+<option value="40.44070503,-79.99813048">194-with Urn:40.44070503,-79.99813048</option>
+<option value="40.44135423,-79.99773888">195-with Urn:40.44135423,-79.99773888</option>
+<option value="40.44286073,-79.99666598">196-with Urn:40.44286073,-79.99666598</option>
+<option value="40.44271373,-79.99677858">197-with Urn:40.44271373,-79.99677858</option>
+<option value="40.44324033,-79.99648358">198-with Urn:40.44324033,-79.99648358</option>
+<option value="40.44333023,-79.99615098">199-with Urn:40.44333023,-79.99615098</option>
+<option value="40.44352613,-79.99553948">200-with Urn:40.44352613,-79.99553948</option>
+<option value="40.44262393,-79.99610268">201-with Urn:40.44262393,-79.99610268</option>
+<option value="40.44224013,-79.99596058">202-with Urn:40.44224013,-79.99596058</option>
+<option value="40.44209723,-79.99514248">203-with Urn:40.44209723,-79.99514248</option>
+<option value="40.44225643,-79.99501908">204-with Urn:40.44225643,-79.99501908</option>
+<option value="40.44155013,-79.99550728">205-with Urn:40.44155013,-79.99550728</option>
+<option value="40.44086023,-79.99599538">206-with Urn:40.44086023,-79.99599538</option>
+<option value="40.44072953,-79.99606518">207-with Urn:40.44072953,-79.99606518</option>
+<option value="40.44074993,-79.99572718">208-with Urn:40.44074993,-79.99572718</option>
+<option value="40.44017833,-79.99642998">209-with Urn:40.44017833,-79.99642998</option>
+<option value="40.44003543,-79.99617778">210-with Urn:40.44003543,-79.99617778</option>
+<option value="40.43950063,-79.99690198">211-with Urn:40.43950063,-79.99690198</option>
+<option value="40.43938633,-79.99664988">212-with Urn:40.43938633,-79.99664988</option>
+<option value="40.43903923,-79.99561988">213-with Urn:40.43903923,-79.99561988</option>
+<option value="40.44032533,-79.99494938">214-with Urn:40.44032533,-79.99494938</option>
+<option value="40.43959453,-79.99440218">215-with Urn:40.43959453,-79.99440218</option>
+<option value="40.43857383,-79.99575938">216-with Urn:40.43857383,-79.99575938</option>
+<option value="40.43861873,-79.99589348">217-with Urn:40.43861873,-79.99589348</option>
+<option value="40.43863913,-79.99701468">218-with Urn:40.43863913,-79.99701468</option>
+<option value="40.43852073,-79.99720778">219-with Urn:40.43852073,-79.99720778</option>
+<option value="40.44255525,-79.99970723">220-Solar Trash Compactor:40.44255525,-79.99970723</option>
+<option value="40.44244437,-79.9995257">221-Solar Trash Compactor:40.44244437,-79.9995257</option>
+<option value="40.4422674,-79.99980058">222-Solar Trash Compactor:40.4422674,-79.99980058</option>
+<option value="40.44179958,-79.99958843">223-Solar Trash Compactor:40.44179958,-79.99958843</option>
+<option value="40.44206937,-79.99919811">224-Solar Trash Compactor:40.44206937,-79.99919811</option>
+<option value="40.44092607,-80.00074791">225-Solar Trash Compactor:40.44092607,-80.00074791</option>
+<option value="40.44164378,-79.99770194">226-Solar Trash Compactor:40.44164378,-79.99770194</option>
+<option value="40.44020864,-79.998665">227-Solar Trash Compactor:40.44020864,-79.998665</option>
+<option value="40.43931645,-79.99929038">228-Solar Trash Compactor:40.43931645,-79.99929038</option>
+<option value="40.43764837,-80.00037027">229-Solar Trash Compactor:40.43764837,-80.00037027</option>
+
+    </select>
+    <br>
+    <b>End:</b>
+    <select id="end">
+      <option value="40.4380555,-79.9988901">Pittsburgh Public Works Department</option>
+      <option value="40.4348462,-79.9966156">First Avenue Station</option>
+      <option value="40.446517,-80.0061781">PNC Park</option>
+    </select>
+    <br>
+      <input type="submit" id="submit">
+    </div>
+    <div id="directions-panel"></div>
+    </div>
+    <script>
+      function initMap() {
+        var directionsService = new google.maps.DirectionsService;
+        var directionsDisplay = new google.maps.DirectionsRenderer;
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 16,
+          center: {lat: 40.4407138, lng: -80.0019821}
+        });
+        directionsDisplay.setMap(map);
+
+        document.getElementById('submit').addEventListener('click', function() {
+          calculateAndDisplayRoute(directionsService, directionsDisplay);
+        });
+      }
+
+      function calculateAndDisplayRoute(directionsService, directionsDisplay) {
+        var waypts = [];
+        var checkboxArray = document.getElementById('waypoints');
+        for (var i = 0; i < checkboxArray.length; i++) {
+          if (checkboxArray.options[i].selected) {
+            waypts.push({
+              location: checkboxArray[i].value,
+              stopover: true
+            });
+          }
+        }
+
+        directionsService.route({
+          origin: document.getElementById('start').value,
+          destination: document.getElementById('end').value,
+          waypoints: waypts,
+          optimizeWaypoints: true,
+          travelMode: google.maps.TravelMode.DRIVING
+        }, function(response, status) {
+          if (status === google.maps.DirectionsStatus.OK) {
+            directionsDisplay.setDirections(response);
+            var route = response.routes[0];
+            var summaryPanel = document.getElementById('directions-panel');
+            summaryPanel.innerHTML = '';
+            
+            // For each route, display summary information.
+            for (var i = 0; i < route.legs.length; i++) {
+              var routeSegment = i + 1;
+              summaryPanel.innerHTML += '<b>Route Segment: ' + routeSegment +
+                  '</b><br>';
+              summaryPanel.innerHTML += route.legs[i].start_address + ' to ';
+              summaryPanel.innerHTML += route.legs[i].end_address + '<br>';
+              summaryPanel.innerHTML += route.legs[i].distance.text + '<br><br>';
+
+            }
+
+          } else {
+            window.alert('Directions request failed due to ' + status);
+          }
+        });
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4UW7M3-q4K01wvJj7D80JhGnZ7NYv_a8&callback=initMap">
+    </script>
+  </body>
+</html>
